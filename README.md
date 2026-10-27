@@ -26,3 +26,23 @@
 - `tool.call.toolview` / key=`web_relay_compat_feedback`
 
 因此它不会放行被 `ck` 拒绝的调用，也不会自己执行任何工具。
+
+
+## v0.2.0
+
+新增：
+
+- 每轮工具状态摘要：成功、执行中、失败、跳过分别显示。
+- `web_relay_compat_feedback` 的跳过原因在折叠工具组之外仍保留一张 Turn Tail 摘要卡。
+- 工具参数默认折叠，按需展开。
+- 连接状态：读取官方 `ctx.connection.state`。
+- Provider / Model：读取官方 `modelSelection` 投影。
+- 上下文占用：读取官方 `contextPressure`，优先显示 projectedTokens / contextWindow；90% 以上加警示。
+- 草稿状态：附件数量、提交阶段、队列数量、pending submission。
+- persistent bash cwd/inode 异常识别，并在本轮卡片中明确告警。
+
+明确不做：
+
+- 不自行重置 persistent bash。Host 内部有 reset 能力，但当前没有公开 Client/Remote 安全接口。
+- 不自动创建或切换新会话。当前仅提供上下文压力预警，避免在没有正式 handoff 协议时丢失上下文。
+- 不伪造逐文件上传百分比；该内部 upload hook 没有开放给第三方 list slot。
