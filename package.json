@@ -1,0 +1,41 @@
+{
+  "name": "dsh-relay-status-ui",
+  "version": "0.1.0",
+  "description": "DSH Web UI enhancement for relay/tool-call status and compatibility feedback.",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "icon.svg"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-tool"
+      ]
+    }
+  },
+  "keywords": [
+    "dshapp-plugin",
+    "dsh",
+    "ui",
+    "tool-call",
+    "relay"
+  ],
+  "license": "MIT"
+}
